@@ -1,0 +1,29 @@
+<div class="container">    
+    <h4>List of Projects</h4>
+    <button class="btn btn-primary" (click)="toggleDisplay()">Add Project</button>
+    <div>
+        <flash-messages></flash-messages>
+    </div>
+    <div class="row">            
+        <br>
+        <div *ngIf="userAuth.loggedIn">
+            <ng-template [ngIf]="projects">
+                <ul *ngFor="let project of projects">
+                    <li><a routerLink="/project/{{project.id}}"> {{ project.title }}</a></li> 
+                </ul>
+            </ng-template>
+        </div>        
+    </div>
+    
+    <div [hidden]="!isShow">
+        <form [formGroup]="projectForm" class="col-md-6 form-horizontal">
+            <label for="title">Title</label>
+            <input type="text" formControlName="title" required> <br>            
+            <label for="description">Description</label><br>
+            <textarea formControlName="description" cols="60" rows="5"></textarea>
+            <br>
+            <button (click)="onSubmit()">Create</button>
+        </form>        
+    </div>    
+</div>
+

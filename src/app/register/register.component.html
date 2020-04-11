@@ -1,0 +1,39 @@
+<div class="container">
+    <br>
+    <div class="row justify-content-center" *ngIf="!_userAuth.loggedIn">
+      <form class="col-md-6 form-horizontal" style="background: lightblue;">
+        <fieldset>
+          <div id="legend">
+            <legend class="text-center"> User Registration </legend>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="username" [(ngModel)]="user.username" placeholder="Username">
+            <span class="alert-danger"> {{ errors['username'] }} </span>
+          </div>
+          <div class="form-group">
+              <input type="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Email">
+              <span class="alert-danger"> {{ errors['email'] }} </span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password1" [(ngModel)]="user.password1" placeholder="Password">
+            <span class="alert-danger"> {{ errors['password1'] }} </span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password2" [(ngModel)]="user.password2" placeholder="Confirm Password">
+            <span class="alert-danger"> {{ errors['password2'] }} </span>
+          </div>
+  
+          <div class="form-group">
+            <button (click)="register()" class="btn btn-primary">Register</button>
+          </div>
+        </fieldset>
+      </form>
+      <div class="col-md-6">
+        <p>If you have already account? </p> <a href="/login" class="btn btn-primary" role="button">Login</a>
+      </div>
+      <div class="row justify-content" *ngIf="_userAuth.loggedIn">
+        <h4>You account details.</h4>
+      </div>
+    </div>
+  </div>
+  

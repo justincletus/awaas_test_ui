@@ -1,0 +1,31 @@
+<div class="container">
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6 login-form" style="background: lightblue;">
+        <form>          
+          <div *ngIf="!userAuth.loggedIn">
+            <h4 class="text-center">Login Form</h4> <br>
+            <div class="form-group">
+              <input type="text" class="form-control" name="login-username" [(ngModel)]="user.username" placeholder="Your Username">
+              <span *ngFor="let error of userAuth.errors | keyvalue" class="alert-danger"> <br/> {{error.value}} </span>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" name="login-password" [(ngModel)]="user.password" placeholder="Password">
+              <span *ngFor="let error of userAuth.errors | keyvalue" class="alert-danger"> <br/> {{error.value}} </span>
+
+            </div>
+
+            <div class="form-group">
+              <button (click)="login()" class="btn btn-primary">Login</button>
+            </div>
+            <div class="form-group">
+              <span *ngFor="let error of userAuth.errors.non_field_errors">
+                {{ error }} <br> </span>
+            </div>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <br>
+  

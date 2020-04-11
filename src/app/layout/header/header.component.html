@@ -1,0 +1,54 @@
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+<header class="header-area">
+
+    <!-- Top Header Area -->
+    <div class="top-header-area d-flex justify-content-between align-items-center">
+                
+    </div>
+
+</header>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" routerLink="/">Awaas Test</a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="projects" routerLinkActive="active">Projects</a>
+                </li>
+                                
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="contact" routerLinkActive="active">Contact</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav align-right">
+                <li class="nav-item">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="search" placeholder="Search">                        
+                    </form>
+                </li>                
+                <div class="register-login-area" *ngIf="!userAuth.loggedIn">
+                    <a routerLink="register" routerLinkActive="active" class="btn nav-item">Register</a>
+                    <a routerLink="login" routerLinkActive="active" class="btn nav-item">Login</a>                    
+                </div>
+                <div class="row" *ngIf="userAuth.loggedIn">            
+                    
+                    <a href="#" (click)="userAuth.logout()" class="btn nav-item" role="button">Logout</a>
+                </div>                
+            </ul>
+        </div>        
+    </nav>
+</div>

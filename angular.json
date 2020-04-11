@@ -88,9 +88,23 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/animate.css",
+              "src/assets/css/magnific-popup.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/classy-nav.min.css",
+              "src/assets/css/style.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery/jquery-2.2.4.min.js",        
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/js/popper.js",
+              "src/assets/js/plugins/plugins.js",
+              "src/assets/js/active.js",
+              "src/assets/js/custom.js"
+            ]
           }
         },
         "lint": {

@@ -1,0 +1,30 @@
+<div class="container">
+    
+    <h4> <u> Task details </u> </h4>
+    <div class="col-md-4 col-md-8 col-sm-12">
+        <h4> {{ task.title }}  </h4>
+        <p class="float-right">Created At: <small> {{ task.date | date: "medium" }} </small></p> 
+        <p> {{ task.description }} </p>
+        <hr>
+
+        <a routerLink="/project/{{ task.project }}/tasks" class="btn btn-info" role="button">back</a> |
+        <button class="btn btn-primary" (click)="taskEdit($event, task.id)">Edit</button> |
+        <button class="btn btn-danger" (click)="taskDelete($event, task.id)">Delete</button>
+
+    </div>
+    <br>
+    <div class="row">
+        <div [hidden]="!isEdit">
+            <form [formGroup]="taskEditForm" class="col-md-6 form-horizontal">
+                <label for="title">Title: </label>
+                <input type="text" formControlName="title" [(ngModel)]="task.title" required> <br>            
+                <label for="description">Description: </label><br>
+                <textarea formControlName="description" [(ngModel)]="task.description" cols="60" rows="5"></textarea>
+                <br>
+                <button (click)="onSubmit()">Update</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
