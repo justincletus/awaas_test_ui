@@ -4,6 +4,7 @@ import { AuthService } from '../shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tasks',
@@ -17,14 +18,25 @@ export class TasksComponent implements OnInit {
     'project': 0,
     'user': 0,
     'title': '',
-    'description': ''
+    'description': '',
+    'start_date': '',
+    'end_date': ''
   }]
+  model: NgbDateStruct;
+  date: {
+    year: number,
+    month: number,
+    day: number
+  };
+
   private id;
   public errors:any;
   isTask: boolean = false;
   taskForm = new FormGroup({
     title: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    start_date: new FormControl(''),
+    end_date: new FormControl('')
   });
 
   constructor(
@@ -33,12 +45,24 @@ export class TasksComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+    private calendar: NgbCalendar
+    
   ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');    
     this.tasksById();
+  }
+
+  selectToday() {
+    this.model = this.calendar.getToday();
+    return this.model;
+  }
+
+  datePicker(){
+    let t_date = this.selectToday();
+    console.log(t_date);
   }
 
   toggleDisplay() {
@@ -77,12 +101,26 @@ export class TasksComponent implements OnInit {
     )
   }
 
+  formatDate(date) {
+    let year = date['year'];
+    let month = date['month'];
+    let day = date['day'];
+    let date_format = [year, month, day].join('-');  
+
+    return date_format;
+  }
+
   onSubmit() {
     let form_data = this.taskForm.value;
-    form_data['project'] = this.id
+    form_data['project'] = this.id;
+    console.log(form_data);
     let access = localStorage.getItem('access_token');
     form_data['user'] = this.userAuth.getUserId(access);
-    console.log(form_data);
+    let f_year = form_data['start_date']['year'];
+    let f_mon = 
+    console.log(f_year);
+    form_data['start_date'] = this.formatDate(form_data['start_date']);
+    form_data['end_date'] = this.formatDate(form_data['end_date']);
     this.userAuth.getUser(access).subscribe(
       data => {
         console.log(data);
@@ -100,9 +138,9 @@ export class TasksComponent implements OnInit {
       err => {
         console.log(err['error']);
         this.errors = err['error'];
-        this.flashMessage.show(err['error'], {
-          cssClass: 'alert-danger', timeout:2000
-        });
+        // this.flashMessage.show(err['error'], {
+        //   cssClass: 'alert-danger', timeout:2000
+        // });
         if(this.errors['code'] == "token_not_valid") {
           console.log('user token is expired');
           this.userAuth.logout();
@@ -111,11 +149,6 @@ export class TasksComponent implements OnInit {
         }
       }
     )
-
-
-
-
-
   }
 
 }

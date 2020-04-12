@@ -20,6 +20,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -53,6 +54,7 @@ export function tokenGetter() {
         whitelistedDomains: ["http://127.0.0.1:8000"]
       }
     }),
+    NgbModule
     // NgFlashMessagesModule.forRoot(),
     
   ],

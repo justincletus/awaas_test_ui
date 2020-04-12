@@ -1,10 +1,10 @@
 <div class="container">
-    
     <h4> <u> Task details </u> </h4>
     <div class="col-md-4 col-md-8 col-sm-12">
         <h4> {{ task.title }}  </h4>
         <p class="float-right">Created At: <small> {{ task.date | date: "medium" }} </small></p> 
         <p> {{ task.description }} </p>
+        <p> <small> Project start date: {{ task.start_date }} and Project end date: {{ task.end_date }} </small> </p>
         <hr>
 
         <a routerLink="/project/{{ task.project }}/tasks" class="btn btn-info" role="button">back</a> |

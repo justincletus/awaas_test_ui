@@ -28,11 +28,14 @@ export class ProjectsComponent implements OnInit {
   public errors: any;
   public edited = true;
   isShow = false;
+  d_mon = new Array()
+
 
   // Create project using this project form object
   projectForm = new FormGroup({
     title: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    duration: new FormControl('')
   });
 
   constructor(
@@ -56,8 +59,16 @@ export class ProjectsComponent implements OnInit {
       this.flashMessage.show("Please login see all available project details", {
         cssClass: 'alert-info', timeout:2000
       });
-    }  
-      
+    }
+
+    this.getListMonth();  
+  }
+
+  getListMonth(){
+    for(let i=1; i < 13; i++) {
+      this.d_mon.push(i)
+    }
+    return this.d_mon;
   }
 
   // Project create form will pop up which requested add project

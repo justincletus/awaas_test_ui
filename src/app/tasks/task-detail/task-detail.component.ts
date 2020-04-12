@@ -18,6 +18,8 @@ export class TaskDetailComponent implements OnInit {
     user: 0,
     title: '',
     description: '',
+    start_date: '',
+    end_date: '',
     date: ''
   };
   private id;
@@ -118,10 +120,10 @@ export class TaskDetailComponent implements OnInit {
         update_data['user'] = this.task['user'];
         update_data['date'] = new Date().toJSON("yyyy/MM/dd HH:mm");
         
-        console.log(update_data);
+        // console.log(update_data);
         this.taskService.updateTask(update_data, token).subscribe(
           data => {
-            console.log(data);
+            // console.log(data);
             this.router.navigate(['project', this.task['project'], 'tasks']);
           },
           err => {

@@ -1,8 +1,8 @@
-<div class="container">
-    <p>project-detail page!</p>
+<div class="container">   
     <div *ngIf="project">
-        <h4> {{ project.title }} </h4>
-        <p> {{ project.description }} </p>
+        <h4> Project: {{ project.title }} </h4>
+        <p>Detail: <br> {{ project.description }} </p>
+        <p> <small> Duration in months :{{ project.duration }} </small></p>
         <a routerLink="/project/{{project.id}}/tasks" class="float-right btn btn-info">Task Details</a>
         
         <br>
@@ -22,7 +22,7 @@
             <textarea formControlName="description" [(ngModel)]="project.description" cols="60" rows="5"></textarea>
             <br>
             <button (click)="onSubmit()">Update</button>
-        </form>     
+        </form>   
     </div>
 </div>
 

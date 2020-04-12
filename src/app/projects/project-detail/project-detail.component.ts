@@ -18,6 +18,7 @@ export class ProjectDetailComponent implements OnInit {
     'user': 0,
     'title': '',
     'description': '',
+    'duration': '',
     'date': ''
   };
   public errors = {};
