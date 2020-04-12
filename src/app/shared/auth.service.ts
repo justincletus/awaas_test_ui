@@ -62,10 +62,8 @@ export class AuthService {
      this.errors = [];
      const token_parts = this.token.split(/\./);
      const token_decoded = JSON.parse(window.atob(token_parts[1]));
-     this.user_id = token_decoded.user_id;
-     // this.token_expires = new Date(token_decoded.exp * 1000);
-     return this.user_id;   
-    
+     this.user_id = token_decoded.user_id;     
+     return this.user_id;    
    }
 
    public refreshToken() {     

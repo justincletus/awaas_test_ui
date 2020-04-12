@@ -143,6 +143,7 @@ export class ProjectsComponent implements OnInit {
       },
       err => {
         console.log(err['error'])
+        this.userAuth.logout();
       }
     )
   }
